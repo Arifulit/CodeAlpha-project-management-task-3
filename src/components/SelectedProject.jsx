@@ -22,7 +22,7 @@ export default function SelectedProject({
             {project.title}
           </h1>
           <button
-            className="text-red-500 hover:text-gray-950 self-start sm:self-auto"
+            className="text-red-600 text-bold "
             onClick={onDelete}
           >
             Delete

@@ -1,7 +1,6 @@
 
 
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import NewProject from './components/NewProject.jsx';
 import NoProjectSelected from './components/NoProjectSelected.jsx';
@@ -9,11 +8,17 @@ import ProjectsSidebar from './components/ProjectsSidebar.jsx';
 import SelectedProject from './components/SelectedProject.jsx';
 
 function App() {
-  const [projectsState, setProjectsState] = useState({
-    selectedProjectId: undefined,
-    projects: [],
-    tasks: [],
+  const [projectsState, setProjectsState] = useState(() => {
+    const savedState = localStorage.getItem('projectsState');
+    return savedState
+      ? JSON.parse(savedState)
+      : { selectedProjectId: undefined, projects: [], tasks: [] };
   });
+
+  // Save to localStorage every time projectsState changes
+  useEffect(() => {
+    localStorage.setItem('projectsState', JSON.stringify(projectsState));
+  }, [projectsState]);
 
   const handleAddTask = (text) => {
     setProjectsState((prevState) => {
@@ -120,7 +125,7 @@ function App() {
   }
 
   return (
-    <main className="h-screen my-8 flex gap-8 px-4 lg:px-12">
+    <main className="h-screen my-8 flex flex-col md:flex-row gap-8 px-4 lg:px-12">
       <ProjectsSidebar
         onStartAddProject={handleStartAddProject}
         projects={projectsState.projects}

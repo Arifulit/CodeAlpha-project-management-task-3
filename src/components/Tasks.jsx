@@ -56,13 +56,13 @@ export default function Tasks({ tasks, onAdd, onDelete, onEdit }) {
                   <div className="flex gap-2">
                     <button
                       onClick={handleSave}
-                      className="text-sm text-gray-600 font-medium hover:underline"
+                      className="text-sm text-blue-600 font-medium hover:underline"
                     >
                       Save
                     </button>
                     <button
                       onClick={cancelEdit}
-                      className="text-sm text-gray-500 font-medium hover:underline"
+                      className="text-sm text-red-500 font-medium hover:underline"
                     >
                       Cancel
                     </button>
@@ -74,7 +74,7 @@ export default function Tasks({ tasks, onAdd, onDelete, onEdit }) {
                   <div className="flex gap-4">
                     <button
                       onClick={() => startEdit(task)}
-                      className="text-sm text-gray-600 font-medium hover:underline focus:outline-none"
+                      className="text-sm text-blue-600 font-medium hover:underline focus:outline-none"
                     >
                       Edit
                     </button>
