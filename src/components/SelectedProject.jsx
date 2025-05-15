@@ -5,34 +5,41 @@ export default function SelectedProject({
   onDelete,
   onAddTask,
   onDeleteTask,
-  tasks
+  onEditTask,
+  tasks,
 }) {
   const formattedDate = new Date(project.dueDate).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'short',
-    day: 'numeric'
+    day: 'numeric',
   });
 
   return (
-    <div className="w-[35rem] mt-16">
-      <header className="pb-4 mb-4 border-b-2 border-stone-300">
-        <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-stone-600 mb-2">
+    <div className="mx-auto mt-16 px-4 w-full max-w-4xl">
+      <header className="pb-4 mb-6 border-b-2 border-gray-300">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-600">
             {project.title}
           </h1>
           <button
-            className="text-stone-600 hover:text-stone-950"
+            className="text-red-500 hover:text-gray-950 self-start sm:self-auto"
             onClick={onDelete}
           >
             Delete
           </button>
         </div>
-        <p className="mb-4 text-stone-400">{formattedDate}</p>
-        <p className="text-stone-600 whitespace-pre-wrap">
+        <p className="mt-2 mb-4 text-gray-400 text-sm sm:text-base">{formattedDate}</p>
+        <p className="text-gray-600 whitespace-pre-wrap text-sm sm:text-base">
           {project.description}
         </p>
       </header>
-      <Tasks onAdd={onAddTask} onDelete={onDeleteTask} tasks={tasks} />
+
+      <Tasks
+        tasks={tasks}
+        onAdd={onAddTask}
+        onDelete={onDeleteTask}
+        onEdit={onEditTask}
+      />
     </div>
   );
 }
